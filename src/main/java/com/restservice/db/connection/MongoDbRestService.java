@@ -14,6 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 
+import com.restservice.mapping.RetrieveMapping;
+import com.user.information.response.RetrieveUserData;
 import com.user.information.response.Users;
 import com.restservice.db.connection.repo.UserRepository;
 import com.user.information.request.UsersInformation;
@@ -25,6 +27,7 @@ public class MongoDbRestService {
 	@Autowired
 	UserRepository repository;
 	Users users = new Users();
+	RetrieveMapping retrieveMapping = new RetrieveMapping();
 
 	@POST
 	@Consumes("application/json")
@@ -80,14 +83,13 @@ public class MongoDbRestService {
 	  @Path("/{name}")
 	  @Produces("application/json")
 	public Response getDetails( @PathParam("name") String name){
+		  RetrieveUserData retrieveUserData = new RetrieveUserData();
 		  String firstname;
 		  firstname=name;
 		  System.out.println("firstname" +firstname);
 		System.out.println("Finding first by Name");
 		Users u = repository.findFirstByName(firstname);
-		users.setName(u.getName());
-		System.out.println(users.getName());
-		System.out.println(u.getLastname().toString());
+		  retrieveUserData=retrieveMapping.retrieveResponseMapping(u);
 		return Response.status(200).entity(u).build();
 	}
 

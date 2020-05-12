@@ -1,17 +1,8 @@
-package com.user.information.request;
+package com.user.information.response;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-
-
-public class UsersInformation {
-
-    @Id
+public class RetrieveUserData {
     private String id;
     private String name;
     private String address;
@@ -56,18 +47,5 @@ public class UsersInformation {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-
-
-    public UsersInformation(String name, String address, Double salary,String lastname) {
-        this.name = name;
-        this.address = address;
-        this.salary = salary;
-        this.lastname=lastname;
-    }
-
-    public UsersInformation() {
-        // TODO Auto-generated constructor stub
     }
 }

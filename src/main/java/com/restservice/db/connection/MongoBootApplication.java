@@ -11,7 +11,7 @@ public class MongoBootApplication  extends SpringBootServletInitializer{
 	
 	public static void main(String[] args) {
 		SpringApplication.run(MongoBootApplication.class, args);
-		 new MongoBootApplication().configure(new SpringApplicationBuilder(MongoBootApplication.class)).run(args);
+		 //new MongoBootApplication().configure(new SpringApplicationBuilder(MongoBootApplication.class)).run(args);
 		    
 		
 	}
