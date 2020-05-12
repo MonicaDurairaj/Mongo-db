@@ -2,6 +2,7 @@ package com.restservice.db.connection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -91,6 +92,17 @@ public class MongoDbRestService {
 		Users u = repository.findFirstByName(firstname);
 		  retrieveUserData=retrieveMapping.retrieveResponseMapping(u);
 		return Response.status(200).entity(u).build();
+	}
+	@GET
+	@Path("retrieveById/{id}")
+	@Produces("application/json")
+	public Response getDetailsById( @PathParam("id") String id){
+		RetrieveUserData retrieveUserData = new RetrieveUserData();
+
+		Optional<Users> u = repository.findById(id);
+		retrieveUserData= retrieveMapping.retrieveResponseMappingById(u);
+		System.out.println(retrieveUserData.getId());
+		return Response.status(200).entity(retrieveUserData).build();
 	}
 
 
